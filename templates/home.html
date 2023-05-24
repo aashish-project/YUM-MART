@@ -1,0 +1,120 @@
+{% load static %}
+
+<title>YUM-MART</title>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<link rel="shortcut icon" href="https://img.icons8.com/3d-fluency/94/hamburger.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<div class = "topbar">
+
+    <div class="icon">
+        <img width="64" height="64" src="https://img.icons8.com/3d-fluency/94/hamburger.png" alt="hamburger"/>
+        <span>YUM-MART</span>
+    </div>
+
+    <div class="search">
+
+        <form method="get">
+            <div class="box">
+                {{form.box}}
+            </div>
+            <button type="submit">Search</button>
+        </form>
+
+    </div>
+
+
+    <div class="menu">
+
+        <a href={% url 'home' %}>Home</a>
+        <a href={% url 'show_cart' %}>Cart</a>
+
+    </div>
+
+</div>
+    
+    {% if items %}
+    <div class="search_result">
+        
+    <h2>Search Result</h2>
+
+    {% comment %} search result {% endcomment %}
+
+
+    <ul>
+        {% for item in items  %}
+        <li style="text-transform: capitalize;">
+        <div class="image">
+            <a href={% url 'items' item.item_slug %}>
+                <img src="{{item.picture.url}}" alt="picture" srcset="" style="height: 400px;">
+            </a>
+            <div class="top-image"></div>
+        </div>
+        <div class="title">{{item.title}}</div>
+
+        <!-- restaurant info  -->
+
+
+        {% for resto in item.restaurant.all %}
+
+            <div class="resto_name">{{resto.name}}</div>
+            <div class="resto_adress">{{resto.adress}}</div>
+            <div class="resto_contact">{{resto.contact}}</div>
+            <div class="resto_mail">{{resto.email}}</div>
+
+
+        {% endfor %}
+
+        <div class="price">{{item.price}}</div>
+        <button><a href="{% url 'buy' item.item_slug %}" class="buy"> BUY </a></button>
+    </li>
+        {% endfor %}
+    </ul>
+</div>
+    
+    <br>
+    <br>
+    <hr>
+    
+{% endif %}
+
+
+<br>
+
+{% comment %} item list {% endcomment %}
+
+
+<ul>
+
+    {% for item in item_set %}
+    <li style="text-transform: capitalize;">
+        <div class="image">
+            <a href={% url 'items' item.item_slug %}>
+                <img src="{{item.picture.url}}" alt="picture" srcset="" style="height: 400px;">
+            </a>
+            <div class="top-image"></div>
+        </div>
+        <div class="title">{{item.title}}</div>
+
+        <!-- restaurant info  -->
+
+
+        {% for resto in item.restaurant.all %}
+
+            <div class="resto_name">{{resto.name}}</div>
+            <div class="resto_adress">{{resto.adress}}</div>
+            <div class="resto_contact">{{resto.contact}}</div>
+            <div class="resto_mail">{{resto.email}}</div>
+
+
+        {% endfor %}
+
+        <div class="price">{{item.price}}</div>
+        <button><a href="{% url 'buy' item.item_slug %}" class="buy"> BUY </a></button>
+    </li>
+    {% endfor %}
+</ul>

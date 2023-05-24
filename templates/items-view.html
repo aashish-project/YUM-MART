@@ -1,0 +1,31 @@
+<img src="{{item.picture.url}}" alt="" srcset="">
+<h1>{{item.title}}</h1>
+<h3>{{item.discription}}</h3>
+rating <b>{{rating}}<b>
+<br>
+
+price=<b>{{item.price}}</b>
+{% for cat in item.category.all %}
+    <li>{{cat.tag}}</li>
+{% endfor %}
+<br>
+{% comment %} <b>
+    
+</b> {% endcomment %}
+{% comment %} <br> {% endcomment %}
+comments=
+{% for comm in item.reviews.all %}
+<br>
+user=
+<b>
+{{comm.user.first.username|capfirst }}
+</b>
+<br>
+{{comm.body}}
+<b>
+    {{comm.rating}}
+</b>
+{{comm.date|date:"d M Y"}}
+<br>
+{% endfor %}
+<a href={% url 'add_cart' item.item_slug %}>BUY</a>

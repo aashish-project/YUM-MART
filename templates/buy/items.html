@@ -1,0 +1,29 @@
+{% for item in purchased_item %}
+    {{item.title}}
+    <br>
+    {{item.discription}}
+    <br>
+    {{item.restaurant}}
+    <br>
+    {% for cat in item.category.all %}
+    <li>{{cat}}</li>
+    {% endfor %}
+    <br>
+    {% for restaurant in item.restaurant.all  %}
+        {{restaurant.name}}
+    <br>
+        {{restaurant.contact}}
+    <br>
+        {{restaurant.email}}
+    <br>
+        {{restaurant.adress}}
+    <br>
+    {% endfor %}
+    <br>
+    {% for rev in item.reviews.all %}
+    <li>{{rev}}</li>
+    {% endfor %}
+    <br>
+    {{item.price}}
+    <br>
+{% endfor %}

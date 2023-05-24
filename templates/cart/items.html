@@ -1,0 +1,25 @@
+
+{% for it in item %}
+    <h1>{{it.title}}</h1>
+    {% for resto in it.restaurant.all %}
+    Restaurant<h3>{{resto.name}} </h3>
+    <h3>{{resto.adress}} </h3>
+    <h3>  {{resto.contact}} </h3>
+    {% endfor %}
+    Discription :-> {{it.discription}}
+    <br>
+    {% for cat in it.category.all %}
+    <li> {{cat.tag}} </li>
+    {% endfor %}
+
+    {% for rev in it.reviews.all %}
+    <li>{{rev.user.first.username|capfirst}} {{rev.body}} ("Rating" {{rev.rating}})  {{rev.date|date:"d M Y"}}</li>
+    {% endfor %}
+    <br>
+    price {{it.price}}
+    <br>
+    <a href="{% url 'remove_from_cart' it.item_slug %}">remove from the cart</a>
+    <br>
+{% endfor %}
+
+Total price {{total_price}}

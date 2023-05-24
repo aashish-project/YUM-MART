@@ -1,0 +1,14 @@
+{{form}}
+{% load static %}
+
+{% for restaurant_data in data %}
+  <h1>{{ restaurant_data.0.restaurants_name }}</h1>
+  <p>{{ restaurant_data.1.restaurant_adress }}</p>
+  <p>{{ restaurant_data.2.restaurant_contact }}</p>
+  <ul>
+    {% for item in restaurant_data.3.items.all %}
+      <li> <a href="{{item.get_absolute_url}}"> {{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
