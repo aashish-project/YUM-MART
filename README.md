@@ -6,6 +6,6 @@
 
 This repository contains the Entity-Relationship (ER) diagram for YUM-MART. The ER diagram provides a visual representation of the database structure and the relationships between entities.
 
-# Usage
+### Usage
 
 Feel free to use this ER diagram as a reference when working with the database associated with YUM-MART. It will help you understand the entity relationships and make informed decisions during development.
